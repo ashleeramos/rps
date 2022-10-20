@@ -7,7 +7,7 @@
   <title>replit</title>
   <link href="style.css" rel="stylesheet" type="text/css" />
   <style>
-    button {
+   /* button {
       background-color:lightblue;
       width:300px;
       height:200px;
@@ -15,12 +15,27 @@
       color:white;
       font-weight:bold;
     }
+    */
 
   </style>
 </head>
 
 <body>
-  <button onclick="main()">play rps!</button>
+  <!--<button onclick="main()">play rps!</button>-->
+  <div id="board">
+    <div id="screen">
+      <div id="monitor">
+      </div> <!--monitor-->
+        <div id="score">
+        </div>
+        <button id="play" onclick="main()">play</button>
+    </div>  <!--screen-->
+   <!-- <div id="controls">
+      <button id ="rock" onclick="rock()">rock</button>
+      <button id="paper" onclick="paper()">paper</button>
+      <button id="scissors" onclick="scissors()">scissors</button>
+    </div> -->
+  </div>
   <script src="script.js"></script>
 
 </body>

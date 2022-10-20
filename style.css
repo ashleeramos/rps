@@ -1,4 +1,52 @@
+/* 
+<div id="board">
+    <div id="screen">
+      <div id="monitor">
+        <div id="score">
+        </div>
+        <button onclick="main()">play</button>
+    </div>
+    <div id="controls">
+      <button id ="rock" onclick="rock()">rock</button>
+      <button id="paper" onclick="paper()">paper</button>
+      <button id="scissors" onclick="scissors()">scissors</button>
+    </div>
+  </div>
+*/
 html, body {
   height: 100%;
   width: 100%;
+}
+
+body {
+  text-align: center;
+}
+
+div {
+  border: 1px solid #ccc!important;
+  border-radius: 16px;
+  padding: 50px;
+}
+
+#board, #screen {
+  width: 80%;
+  margin: 50px auto;
+}
+
+#screen {
+  background-color: gray;
+}
+
+#monitor {
+  width: 65%;
+  height: 300px;
+  background-color: white;
+  float: left;
+}
+
+#score, #play {
+  width: 50px;
+  float: right;
+  margin-right: 50px;
+  background-color: blue;
 }
