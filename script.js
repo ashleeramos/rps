@@ -3,6 +3,29 @@ var cWins = 0;
 var uWins = 0;
 var roundNum = 0;
 var outOf = 0;
+var screen = document.getElementById("monitor");
+var plays = ["r", "p", "s", "q"];
+
+function instructions() {
+  let instruct = "<p>FirstPara</p><p>SecondPara</p>";
+  instruct += "<br><br> press play to start!";
+  screen.innerHTML = instruct;
+}
+
+function countdown() {
+  let screen = document.getElementById("monitor");
+  for (let count = 3; count >= 0; count--) {
+    screen.innerHTML = "<H1>" + count + "</H1>";
+  }
+}
+
+function uTurn(uPlay){
+  alert(uPlay);
+  let cPlay = cTurn();
+  let text = showRound(cPlay, uPlay)+"<br><br>";
+  text += findWinner(cPlay, uPlay);
+  screen.innerHTML = text;
+}
 
 function main() {
   newGame();
@@ -31,20 +54,19 @@ function newRound() {
 }
 
 function showRound(cPlay, uPlay) {
-  alert("i picked " + cPlay + ". you picked " + uPlay + ".");
+  return "i picked " + cPlay + ". you picked " + uPlay + ".";
 }
 
-function cTurn(cPlay) {
-  var plays = ["r", "p", "s", "q"];
+function cTurn() {
   let cNum = Math.floor(Math.random() * 3);
-  cPlay = plays[cNum];
+  let cPlay = plays[cNum];
   return cPlay;
 }
 
-function uTurn() {
+/* function uTurn.old() {
   let uPlay = prompt("r,p,s?");
   return uPlay;
-}
+} */
 
 function findWinner(cPlay, uPlay) {
   let i = 0;
@@ -65,8 +87,7 @@ function findWinner(cPlay, uPlay) {
       }
       i++;
     }
-    alert(winner + " won.\ni won " + cWins + ". you won " + uWins + ".");
-    return winner;
+    return winner + " won.\ni won " + cWins + ". you won " + uWins + ".";
   }
 }
 

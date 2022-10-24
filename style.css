@@ -6,7 +6,7 @@
         </div>
         <button onclick="main()">play</button>
     </div>
-    <div id="controls">
+    <div id="buttons">
       <button id ="rock" onclick="rock()">rock</button>
       <button id="paper" onclick="paper()">paper</button>
       <button id="scissors" onclick="scissors()">scissors</button>
@@ -23,30 +23,61 @@ body {
 }
 
 div {
-  border: 1px solid #ccc!important;
+  border: 1px solid #ccc;
   border-radius: 16px;
-  padding: 50px;
 }
 
 #board, #screen {
-  width: 80%;
-  margin: 50px auto;
+  margin: 50px auto 0 auto;
+  padding: 50px;
+}
+
+#board {
+  width: 800px;
+  margin-top: 0px;
+  padding-top: 0px;
 }
 
 #screen {
+  width: 700px;
   background-color: gray;
+  overflow: auto;
 }
 
 #monitor {
-  width: 65%;
-  height: 300px;
+  width: 400px;
+  height: 100px;
   background-color: white;
   float: left;
+  padding: 50px;
+}
+
+#controls {
+  width: 100px;
+  float: left;
+  padding: 10px;
+  margin-left: 50px;
 }
 
 #score, #play {
-  width: 50px;
-  float: right;
-  margin-right: 50px;
+  width: 55px;
+  padding: 5px;
   background-color: blue;
+}
+
+.column {
+  float: left;
+  width: 25%;
+  margin-right: 10%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.row:last-child{
+  margin-right:0px;
 }
