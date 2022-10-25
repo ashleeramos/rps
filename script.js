@@ -5,6 +5,7 @@ var roundNum = 0;
 var outOf = 0;
 var screen = document.getElementById("monitor");
 var plays = ["r", "p", "s", "q"];
+var second = 3;
 
 function instructions() {
   let instruct = "<p>FirstPara</p><p>SecondPara</p>";
@@ -12,12 +13,31 @@ function instructions() {
   screen.innerHTML = instruct;
 }
 
-function countdown() {
-  let screen = document.getElementById("monitor");
-  for (let count = 3; count >= 0; count--) {
-    screen.innerHTML = "<H1>" + count + "</H1>";
-  }
+function displayCD(count) {
+  screen.innerHTML = "<H1>" + count + "</H1>";
 }
+
+var count = 3;                  //  set your counter to 1
+
+function countdown() {         //  create a loop function
+  setTimeout(function() {   //  call a 3s setTimeout when the loop is called
+     
+    count--;                    //  increment the counter
+    if (count >= 0) {           //  if the counter < 10, call the loop function
+      myLoop();             //  ..  again which will trigger another 
+    }                       //  ..  setTimeout()
+  }, 1000)
+}
+
+function countdown(count) {
+  screen.innerHTML = "<H1>" + count + "</H1>";
+  var interval = setInterval(function() {
+      if (count <= 1) clearInterval(interval); //break the interval
+      count--;
+      screen.innerHTML = "<H1>" + count + "</H1>"; 
+  }, 1000); //time in milliseconds to wait
+}
+
 
 function uTurn(uPlay){
   alert(uPlay);
