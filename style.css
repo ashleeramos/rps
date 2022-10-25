@@ -38,13 +38,13 @@ div {
   padding-top: 0px;
 }
 
-#screen {
+#monitor {
   width: 700px;
   background-color: gray;
   overflow: auto;
 }
 
-#monitor {
+#screen {
   width: 400px;
   height: 100px;
   background-color: white;
@@ -80,4 +80,9 @@ div {
 
 .row:last-child{
   margin-right:0px;
+}
+
+.shoot{
+  background-color: red!important;
+  color: white;
 }

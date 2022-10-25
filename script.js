@@ -3,18 +3,39 @@ var cWins = 0;
 var uWins = 0;
 var roundNum = 0;
 var outOf = 0;
-var screen = document.getElementById("monitor");
+var screen = document.getElementById("screen");
+var monitor = document.getElementById("monitor");
+var instruct = document.getElementById("instruct");
 var plays = ["r", "p", "s", "q"];
 var second = 3;
+var countWords = ["shoot!", "scissors", "paper", "rock"];
+var playButton = document.getElementById("play");
 
 function instructions() {
-  let instruct = "<p>FirstPara</p><p>SecondPara</p>";
-  instruct += "<br><br> press play to start!";
-  screen.innerHTML = instruct;
+  playButton.setAttribute("onclick","countdown('3');");
+  let instructs = "<p>FirstPara</p><p>best out of how many?</p>";
+  let games = document.createElement("textarea");
+  games.id = "howMany";
+  instructs += "<br><br> press play to start!";
+  instruct.innerHTML = instructs;
+  screen.appendChild(games);
+}
+
+function shoot(){
+  screen.classList.add("shoot");
+}
+
+function notShoot(){
+  screen.classList.remove("shoot");
 }
 
 function displayCD(count) {
-  screen.innerHTML = "<H1>" + count + "</H1>";
+  outOf = document.getElementById("howMany").value;
+  let scoreBox = document.getElementById("score");
+  scoreBox.innerHTML = "1 out of " + outOf;
+  scoreBox.classList.add("shoot");
+  screen.innerHTML = "<H1>" + countWords[count] + "</H1>";
+  notShoot();
 }
 
 var count = 3;                  //  set your counter to 1
@@ -26,21 +47,23 @@ function countdown() {         //  create a loop function
     if (count >= 0) {           //  if the counter < 10, call the loop function
       myLoop();             //  ..  again which will trigger another 
     }                       //  ..  setTimeout()
-  }, 1000)
+  }, 500)
 }
 
 function countdown(count) {
-  screen.innerHTML = "<H1>" + count + "</H1>";
+  notShoot();
+  screen.innerHTML = "<H1>" + countWords[count] + "</H1>";
   var interval = setInterval(function() {
       if (count <= 1) clearInterval(interval); //break the interval
       count--;
-      screen.innerHTML = "<H1>" + count + "</H1>"; 
-  }, 1000); //time in milliseconds to wait
+    if (count == 0){
+      shoot();
+    }
+      screen.innerHTML = "<H1>" + countWords[count] + "</H1>"; 
+  }, 500); //time in milliseconds to wait
 }
 
-
 function uTurn(uPlay){
-  alert(uPlay);
   let cPlay = cTurn();
   let text = showRound(cPlay, uPlay)+"<br><br>";
   text += findWinner(cPlay, uPlay);
