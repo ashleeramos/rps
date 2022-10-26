@@ -10,6 +10,7 @@ var plays = ["r", "p", "s", "q"];
 var second = 3;
 var countWords = ["shoot!", "scissors", "paper", "rock"];
 var playButton = document.getElementById("play");
+var scoreBox = document.getElementById("score");
 
 function instructions() {
   // playButton.setAttribute("onclick", "countdown('3');");
@@ -43,18 +44,18 @@ function countdown() {
   }, 500)
 }
 
-function getScore() {
+function firstRound() {
   outOf = document.getElementById("howMany").value;
-  roundNum++;
-  let scoreBox = document.getElementById("score");
+  newRound();
+}
+
+function newRound(){
   scoreBox.innerHTML = roundNum + " out of " + outOf;
   scoreBox.classList.add("shoot");
   countdown(3);
 }
 
 function countdown(count) {
-  playButton.setAttribute("onclick", "countdown('3');");
-  notShoot();
   screen.innerHTML = "<H1>" + countWords[count] + "</H1>";
   var interval = setInterval(function() {
     if (count <= 1) clearInterval(interval); //break the interval
@@ -68,6 +69,7 @@ function countdown(count) {
 
 function uTurn(uPlay) {
   let cPlay = cTurn();
+  notShoot();
   let text = showRound(cPlay, uPlay) + "<br><br>";
   text += findWinner(cPlay, uPlay);
   screen.innerHTML = text;
@@ -92,12 +94,12 @@ function main() {
   }
 } */
 
-function newRound() {
+/* function newRound() {
   let cPlay = cTurn();
   let uPlay = uTurn();
   showRound(cPlay, uPlay);
   findWinner(cPlay, uPlay);
-}
+} */
 
 function showRound(cPlay, uPlay) {
   return "i picked " + cPlay + ". you picked " + uPlay + ".";
