@@ -13,12 +13,9 @@ var playButton = document.getElementById("play");
 
 function instructions() {
   playButton.setAttribute("onclick","countdown('3');");
-  let instructs = "<p>FirstPara</p><p>best out of how many?</p>";
-  let games = document.createElement("textarea");
-  games.id = "howMany";
-  instructs += "<br><br> press play to start!";
+  let instructs = "<p>FirstPara</p><p>best out of how many?</p><input type=\"text\" id=\"howMany\" name=\"games\"><br>";
+  instructs += "Enter number of games and rress play to start!";
   instruct.innerHTML = instructs;
-  screen.appendChild(games);
 }
 
 function shoot(){
