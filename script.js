@@ -12,34 +12,30 @@ var countWords = ["shoot!", "scissors", "paper", "rock"];
 var playButton = document.getElementById("play");
 
 function instructions() {
-  playButton.setAttribute("onclick","countdown('3');");
+  // playButton.setAttribute("onclick", "countdown('3');");
   let instructs = "<p>FirstPara</p><p>best out of how many?</p><input type=\"text\" id=\"howMany\" name=\"games\"><br>";
-  instructs += "Enter number of games and rress play to start!";
+  instructs += "Enter number of games and press play to start!";
   instruct.innerHTML = instructs;
 }
 
-function shoot(){
+function shoot() {
   screen.classList.add("shoot");
 }
 
-function notShoot(){
+function notShoot() {
   screen.classList.remove("shoot");
 }
 
 function displayCD(count) {
-  outOf = document.getElementById("howMany").value;
-  let scoreBox = document.getElementById("score");
-  scoreBox.innerHTML = "1 out of " + outOf;
-  scoreBox.classList.add("shoot");
   screen.innerHTML = "<H1>" + countWords[count] + "</H1>";
   notShoot();
 }
 
 var count = 3;                  //  set your counter to 1
 
-function countdown() {         //  create a loop function
+function countdown() {
   setTimeout(function() {   //  call a 3s setTimeout when the loop is called
-     
+
     count--;                    //  increment the counter
     if (count >= 0) {           //  if the counter < 10, call the loop function
       myLoop();             //  ..  again which will trigger another 
@@ -47,22 +43,32 @@ function countdown() {         //  create a loop function
   }, 500)
 }
 
+function getScore() {
+  outOf = document.getElementById("howMany").value;
+  roundNum++;
+  let scoreBox = document.getElementById("score");
+  scoreBox.innerHTML = roundNum + " out of " + outOf;
+  scoreBox.classList.add("shoot");
+  countdown(3);
+}
+
 function countdown(count) {
+  playButton.setAttribute("onclick", "countdown('3');");
   notShoot();
   screen.innerHTML = "<H1>" + countWords[count] + "</H1>";
   var interval = setInterval(function() {
-      if (count <= 1) clearInterval(interval); //break the interval
-      count--;
-    if (count == 0){
+    if (count <= 1) clearInterval(interval); //break the interval
+    count--;
+    if (count == 0) {
       shoot();
     }
-      screen.innerHTML = "<H1>" + countWords[count] + "</H1>"; 
+    screen.innerHTML = "<H1>" + countWords[count] + "</H1>";
   }, 500); //time in milliseconds to wait
 }
 
-function uTurn(uPlay){
+function uTurn(uPlay) {
   let cPlay = cTurn();
-  let text = showRound(cPlay, uPlay)+"<br><br>";
+  let text = showRound(cPlay, uPlay) + "<br><br>";
   text += findWinner(cPlay, uPlay);
   screen.innerHTML = text;
 }
@@ -76,15 +82,15 @@ function main() {
   else alert("thank you for playing rps!");
 }
 
-function newGame() {
-  let roundNum = 0;
+/* function newGame() {
+  roundNum = 0;
   game++;
   outOf = prompt("best out of?");
   while (roundNum < outOf) {
     roundNum++;
     newRound();
   }
-}
+} */
 
 function newRound() {
   let cPlay = cTurn();
@@ -111,8 +117,7 @@ function cTurn() {
 function findWinner(cPlay, uPlay) {
   let i = 0;
   if (cPlay == uPlay) {
-    alert("it's a tie!");
-    roundNum--; // not working
+    alert("it's a tie!" + roundNum);
   }
   else {
     let key = cPlay + uPlay;
@@ -127,7 +132,7 @@ function findWinner(cPlay, uPlay) {
       }
       i++;
     }
-    return winner + " won.\ni won " + cWins + ". you won " + uWins + ".";
+    return "round " + roundNum + ": " + winner + " won.\ni won " + cWins + ". you won " + uWins + ".";
   }
 }
 
