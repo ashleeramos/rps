@@ -3,69 +3,6 @@ var cWins = 0;
 var uWins = 0;
 var roundNum = 0;
 var outOf = 0;
-var screen = document.getElementById("screen");
-var monitor = document.getElementById("monitor");
-var instruct = document.getElementById("instruct");
-var plays = ["r", "p", "s", "q"];
-var second = 3;
-var countWords = ["shoot!", "scissors", "paper", "rock"];
-var playButton = document.getElementById("play");
-
-function instructions() {
-  playButton.setAttribute("onclick","countdown('3');");
-  let instructs = "<p>FirstPara</p><p>best out of how many?</p><input type=\"text\" id=\"howMany\" name=\"games\"><br>";
-  instructs += "Enter number of games and rress play to start!";
-  instruct.innerHTML = instructs;
-}
-
-function shoot(){
-  screen.classList.add("shoot");
-}
-
-function notShoot(){
-  screen.classList.remove("shoot");
-}
-
-function displayCD(count) {
-  outOf = document.getElementById("howMany").value;
-  let scoreBox = document.getElementById("score");
-  scoreBox.innerHTML = "1 out of " + outOf;
-  scoreBox.classList.add("shoot");
-  screen.innerHTML = "<H1>" + countWords[count] + "</H1>";
-  notShoot();
-}
-
-var count = 3;                  //  set your counter to 1
-
-function countdown() {         //  create a loop function
-  setTimeout(function() {   //  call a 3s setTimeout when the loop is called
-     
-    count--;                    //  increment the counter
-    if (count >= 0) {           //  if the counter < 10, call the loop function
-      myLoop();             //  ..  again which will trigger another 
-    }                       //  ..  setTimeout()
-  }, 500)
-}
-
-function countdown(count) {
-  notShoot();
-  screen.innerHTML = "<H1>" + countWords[count] + "</H1>";
-  var interval = setInterval(function() {
-      if (count <= 1) clearInterval(interval); //break the interval
-      count--;
-    if (count == 0){
-      shoot();
-    }
-      screen.innerHTML = "<H1>" + countWords[count] + "</H1>"; 
-  }, 500); //time in milliseconds to wait
-}
-
-function uTurn(uPlay){
-  let cPlay = cTurn();
-  let text = showRound(cPlay, uPlay)+"<br><br>";
-  text += findWinner(cPlay, uPlay);
-  screen.innerHTML = text;
-}
 
 function main() {
   newGame();
@@ -94,19 +31,20 @@ function newRound() {
 }
 
 function showRound(cPlay, uPlay) {
-  return "i picked " + cPlay + ". you picked " + uPlay + ".";
+  alert("i picked " + cPlay + ". you picked " + uPlay + ".");
 }
 
-function cTurn() {
+function cTurn(cPlay) {
+  var plays = ["r", "p", "s", "q"];
   let cNum = Math.floor(Math.random() * 3);
-  let cPlay = plays[cNum];
+  cPlay = plays[cNum];
   return cPlay;
 }
 
-/* function uTurn.old() {
+function uTurn() {
   let uPlay = prompt("r,p,s?");
   return uPlay;
-} */
+}
 
 function findWinner(cPlay, uPlay) {
   let i = 0;
@@ -127,7 +65,8 @@ function findWinner(cPlay, uPlay) {
       }
       i++;
     }
-    return winner + " won.\ni won " + cWins + ". you won " + uWins + ".";
+    alert(winner + " won.\ni won " + cWins + ". you won " + uWins + ".");
+    return winner;
   }
 }
 
