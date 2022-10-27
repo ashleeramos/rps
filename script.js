@@ -1,7 +1,7 @@
 var game = 0;
 var cWins = 0;
 var uWins = 0;
-var roundNum = 0;
+var roundNum = 1;
 var outOf = 0;
 var screen = document.getElementById("screen");
 var monitor = document.getElementById("monitor");
@@ -10,36 +10,32 @@ var plays = ["r", "p", "s", "q"];
 var second = 3;
 var countWords = ["shoot!", "scissors", "paper", "rock"];
 var playButton = document.getElementById("play");
+var scoreBox = document.getElementById("score");
 
 function instructions() {
-  playButton.setAttribute("onclick","countdown('3');");
   let instructs = "<p>FirstPara</p><p>best out of how many?</p><input type=\"text\" id=\"howMany\" name=\"games\"><br>";
-  instructs += "Enter number of games and rress play to start!";
+  instructs += "Enter number of games and press play to start!";
   instruct.innerHTML = instructs;
 }
 
-function shoot(){
+function shoot() {
   screen.classList.add("shoot");
 }
 
-function notShoot(){
+function notShoot() {
   screen.classList.remove("shoot");
 }
 
 function displayCD(count) {
-  outOf = document.getElementById("howMany").value;
-  let scoreBox = document.getElementById("score");
-  scoreBox.innerHTML = "1 out of " + outOf;
-  scoreBox.classList.add("shoot");
   screen.innerHTML = "<H1>" + countWords[count] + "</H1>";
   notShoot();
 }
 
 var count = 3;                  //  set your counter to 1
 
-function countdown() {         //  create a loop function
+function countdown() {
   setTimeout(function() {   //  call a 3s setTimeout when the loop is called
-     
+
     count--;                    //  increment the counter
     if (count >= 0) {           //  if the counter < 10, call the loop function
       myLoop();             //  ..  again which will trigger another 
@@ -47,24 +43,42 @@ function countdown() {         //  create a loop function
   }, 500)
 }
 
+function firstRound() {
+  outOf = document.getElementById("howMany").value;
+  newRound();
+}
+
+function newRound() {
+  playButton.setAttribute("onclick", "newRound();");
+  scoreBox.innerHTML = roundNum + " out of " + outOf;
+  scoreBox.classList.add("shoot");
+  countdown(3);
+}
+
 function countdown(count) {
-  notShoot();
   screen.innerHTML = "<H1>" + countWords[count] + "</H1>";
   var interval = setInterval(function() {
-      if (count <= 1) clearInterval(interval); //break the interval
-      count--;
-    if (count == 0){
+    if (count <= 1) clearInterval(interval); //break the interval
+    count--;
+    if (count == 0) {
       shoot();
     }
-      screen.innerHTML = "<H1>" + countWords[count] + "</H1>"; 
+    screen.innerHTML = "<H1>" + countWords[count] + "</H1>";
   }, 500); //time in milliseconds to wait
 }
 
-function uTurn(uPlay){
+function uTurn(uPlay) {
   let cPlay = cTurn();
-  let text = showRound(cPlay, uPlay)+"<br><br>";
-  text += findWinner(cPlay, uPlay);
+  notShoot();
+  let text = showRound(cPlay, uPlay) + "<br><br>";
+  if (cPlay == uPlay) {
+    text += "press play for replay";
+  }
+  else {
+    text += findWinner(cPlay, uPlay);
+  }
   screen.innerHTML = text;
+  roundNum++;
 }
 
 function main() {
@@ -74,23 +88,6 @@ function main() {
     newGame();
   }
   else alert("thank you for playing rps!");
-}
-
-function newGame() {
-  let roundNum = 0;
-  game++;
-  outOf = prompt("best out of?");
-  while (roundNum < outOf) {
-    roundNum++;
-    newRound();
-  }
-}
-
-function newRound() {
-  let cPlay = cTurn();
-  let uPlay = uTurn();
-  showRound(cPlay, uPlay);
-  findWinner(cPlay, uPlay);
 }
 
 function showRound(cPlay, uPlay) {
@@ -110,11 +107,6 @@ function cTurn() {
 
 function findWinner(cPlay, uPlay) {
   let i = 0;
-  if (cPlay == uPlay) {
-    alert("it's a tie!");
-    roundNum--; // not working
-  }
-  else {
     let key = cPlay + uPlay;
     let winFinder = [["ps", "you"], ["sp", "i"], ["rp", "you"], ["pr", "i"], ["sr", "you"], ["rs", "i"]]
     while (i < winFinder.length) {
@@ -127,8 +119,7 @@ function findWinner(cPlay, uPlay) {
       }
       i++;
     }
-    return winner + " won.\ni won " + cWins + ". you won " + uWins + ".";
-  }
+    return "round " + roundNum + ": " + winner + " won.\ni won " + cWins + ". you won " + uWins + ".";
 }
 
 function stats() {
