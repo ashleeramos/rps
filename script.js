@@ -72,13 +72,19 @@ function uTurn(uPlay) {
   notShoot();
   let text = showRound(cPlay, uPlay) + "<br><br>";
   if (cPlay == uPlay) {
+    roundNum--;
     text += "press play for replay";
   }
   else {
     text += findWinner(cPlay, uPlay);
   }
   screen.innerHTML = text;
-  roundNum++;
+  if (roundNum < 3) {
+    roundNum++;
+  }
+  else {
+    stats();
+  }
 }
 
 function main() {
@@ -107,24 +113,32 @@ function cTurn() {
 
 function findWinner(cPlay, uPlay) {
   let i = 0;
-    let key = cPlay + uPlay;
-    let winFinder = [["ps", "you"], ["sp", "i"], ["rp", "you"], ["pr", "i"], ["sr", "you"], ["rs", "i"]]
-    while (i < winFinder.length) {
-      if (winFinder[i][0] == key) {
-        winner = winFinder[i][1];
-        if (winner == "i") {
-          cWins++;
-        }
-        else uWins++;
+  let key = cPlay + uPlay;
+  let winFinder = [["ps", "you"], ["sp", "i"], ["rp", "you"], ["pr", "i"], ["sr", "you"], ["rs", "i"]]
+  while (i < winFinder.length) {
+    if (winFinder[i][0] == key) {
+      winner = winFinder[i][1];
+      if (winner == "i") {
+        cWins++;
       }
-      i++;
+      else uWins++;
     }
-    return "round " + roundNum + ": " + winner + " won.\ni won " + cWins + ". you won " + uWins + ".";
+    i++;
+  }
+  return "round " + roundNum + ": " + winner + " won.\ni won " + cWins + ". you won " + uWins + ".";
 }
 
 function stats() {
-  if (uWins > cWins) alert("you won best out of " + outOf);
-  else alert("i won best out of " + cWins + ".");
-  let again = confirm("do you want to play again?")
-  return again;
+  document.getElementById("rpsButtons").style.display = "none";
+  let againText = null;
+  if (uWins > cWins) {
+    againText = "you won best out of " + outOf;
+  }
+  else {
+    againText = "i won best out of " + cWins + ".";
+  }
+  againText += "\npress the play button to play again."
+  screen.innerHTML = againText;
+  playButton.value = "play again?";
+  playButton.setAttribute("onclick", "location.reload();");
 }
