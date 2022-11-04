@@ -13,8 +13,8 @@ var playButton = document.getElementById("play");
 var scoreBox = document.getElementById("score");
 
 function instructions() {
-  let instructs = "<p>FirstPara</p><p>best out of how many?</p><input type=\"text\" id=\"howMany\" name=\"games\"><br>";
-  instructs += "Enter number of games and press play to start!";
+  let instructs = "<p>best out of how many?</p><input type=\"text\" id=\"howMany\" name=\"games\"><br>";
+  instructs += "enter number of games and press play to start!";
   instruct.innerHTML = instructs;
 }
 
