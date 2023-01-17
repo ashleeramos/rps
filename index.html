@@ -7,15 +7,6 @@
   <title>replit</title>
   <link href="style.css" rel="stylesheet" type="text/css" />
   <style>
-    /* button {
-      background-color:lightblue;
-      width:300px;
-      height:200px;
-      font-size:24pt;
-      color:white;
-      font-weight:bold;
-    }
-    */
   </style>
 </head>
 
@@ -29,8 +20,7 @@
       </div>
       <!--monitor-->
       <div id="controls">
-        <div id="score">
-        </div>
+        <div id="score"></div>
         <button id="play" onclick="firstRound()">play!</button>
       </div>
       <!--controls-->
@@ -38,11 +28,18 @@
     <!--screen-->
     <div id="rpsButtons" class="row">
       <!--(\'' + result.name + '\')-->
-      <div class="column" id="rock"><button onclick="uTurn('r')"><div>rock</div></button></div>
-      <div class="column" id="paper"><button onclick="uTurn('p')"><div>paper</div></button></div>
-      <div class="column" id="scissors"><button onclick="uTurn('s')"><div>scissors</div></button></div>
+      <div class="column" id="rock"><button onclick="uTurn('r')">
+          <div>rock</div>
+        </button></div>
+      <div class="column" id="paper"><button onclick="uTurn('p')">
+          <div>paper</div>
+        </button></div>
+      <div class="column" id="scissors"><button onclick="uTurn('s')">
+          <div>scissors</div>
+        </button></div>
     </div>
-  </div> <!--closes board-->
+  </div>
+  <!--closes board-->
   <script src="script.js"></script>
 
 </body>

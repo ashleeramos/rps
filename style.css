@@ -7,6 +7,10 @@ body {
   text-align: center;
 }
 
+#score {
+  display: none;
+}
+
 #board, #screen, #monitor, #score, #play {
   border: 1px solid black;
   border-radius: 16px;
@@ -26,7 +30,7 @@ body {
 #monitor {
   width: 700px;
   margin-top:25px;
-  background-color: #696969;
+  background-color: #12100E;
   overflow: auto;
   padding-bottom: 15px;
 }
@@ -45,24 +49,18 @@ body {
   width: 100px;
   float: left;
   padding: 10px;
-  margin-left: 50px;
+  margin-left: 25px;
 }
 
 #score, #play {
-  width: 55px;
   padding: 5px;
   background-color: #E6E6FA;
   border-radius: 5px;
 }
 
 #play {
+  width: 55px;
   margin-top: 10px;
-  float: left;
-}
-
-#score {
-  width: 80%;
-  margin: auto;
 }
 
 .column {
@@ -83,7 +81,7 @@ body {
 
 .shoot{
   background-color: lightblue!important;
-  color: white;
+  /* color: white; */
 }
 
 #rpsButtons {
