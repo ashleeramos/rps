@@ -30,7 +30,7 @@ body {
 #monitor {
   width: 700px;
   margin-top:25px;
-  background-color: #12100E;
+  background-color: #696969;
   overflow: auto;
   padding-bottom: 15px;
 }
@@ -80,7 +80,7 @@ body {
 }
 
 .shoot{
-  background-color: lightblue!important;
+  background-color: #d1e1f5!important;
   /* color: white; */
 }
 
@@ -125,7 +125,7 @@ button div{
 
 #rpsButtons .column:hover {
   border-radius: 5px;
-  background-color: #E6E6FA;
+  background-color: #4682B4;
 }
 
 #rpsButtons button:selected {
