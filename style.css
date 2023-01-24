@@ -30,7 +30,7 @@ body {
 #monitor {
   width: 700px;
   margin-top:25px;
-  background-color: #696969;
+  background-color: #D3D3D3;
   overflow: auto;
   padding-bottom: 15px;
 }
@@ -54,13 +54,13 @@ body {
 
 #score, #play {
   padding: 5px;
-  background-color: #E6E6FA;
   border-radius: 5px;
 }
 
 #play {
-  width: 55px;
+  width: 70px;
   margin-top: 10px;
+  background-color: #cce6ff;
 }
 
 .column {
@@ -80,8 +80,7 @@ body {
 }
 
 .shoot{
-  background-color: #d1e1f5!important;
-  /* color: white; */
+  background-color: #E6E6FA!important;
 }
 
 #rpsButtons {
@@ -95,19 +94,19 @@ body {
 
 #rock {
   background-image: url("rockt.png");
-  background-color: #ffffffff;
+  background-color: white;
   background-repeat: no-repeat;
 }
 
 #paper {
   background-image: url("papert.png");
-  background-color: #ffffffff;
+  background-color: white;
   background-repeat: no-repeat;
 }
 
 #scissors {
   background-image: url("scissorst.png");
-  background-color: #ffffffff;
+  background-color: white;
   background-repeat: no-repeat;
 }
 
@@ -125,7 +124,7 @@ button div{
 
 #rpsButtons .column:hover {
   border-radius: 5px;
-  background-color: #4682B4;
+  background-color: #FFFFE0;
 }
 
 #rpsButtons button:selected {

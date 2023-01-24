@@ -87,15 +87,6 @@ function uTurn(uPlay) {
   }
 }
 
-/* function main() {
-  newGame();
-  let again = stats();
-  if (again == true) {
-    newGame();
-  }
-  else alert("thank you for playing rps!");
-} */
-
 function showRound(cPlay, uPlay) {
   return "i picked " + cPlay + ". you picked " + uPlay + ".";
 }
@@ -105,11 +96,6 @@ function cTurn() {
   let cPlay = plays[cNum];
   return cPlay;
 }
-
-/* function uTurn.old() {
-  let uPlay = prompt("r,p,s?");
-  return uPlay;
-} */
 
 function findWinner(cPlay, uPlay) {
   let i = 0;
